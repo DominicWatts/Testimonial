@@ -18,9 +18,11 @@ class Edit extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Xigen\Testimonial\Model\TestimonialFactory $testimonialFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
+        $this->testimonialFactory = $testimonialFactory;
         parent::__construct($context, $coreRegistry);
     }
 
@@ -33,7 +35,7 @@ class Edit extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
     {
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('testimonial_id');
-        $model = $this->_objectManager->create(\Xigen\Testimonial\Model\Testimonial::class);
+        $model = $this->testimonialFactory->create();
         
         // 2. Initial checking
         if ($id) {

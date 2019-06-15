@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
 	<menu>
-		<add action="xigen_testimonial/testimonial/index" id="Xigen_Testimonial::xigen_testimonial_testimonial" module="Xigen_Testimonial" parent="Xigen::top_level" resource="Magento_Backend::content" sortOrder="9999" title="Testimonial"/>
+		<add id="Xigen_Testimonial::Testimonial" title="Testimonials" module="Xigen_Testimonial" sortOrder="50" resource="Xigen_Testimonial::data" parent="Magento_Backend::marketing"/>
+		<add action="xigen_testimonial/testimonial/index" id="Xigen_Testimonial::xigen_testimonial_testimonial" module="Xigen_Testimonial" parent="Xigen_Testimonial::Testimonial" resource="Magento_Backend::content" sortOrder="10" title="Manage"/>
 	</menu>
 </config>

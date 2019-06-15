@@ -1,0 +1,42 @@
+<?php if ($block->getPagerHtml()) : ?>
+<div class="order-products-toolbar toolbar bottom"><?=$block->getPagerHtml(); ?></div>
+<?php endif; ?>
+<?php $testimonials = $block->getCustomCollection(); ?>
+<?php if ($testimonials && count($testimonials)) : ?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= $block->escapeHtml(__('Testimonials')) ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col name"><?= $block->escapeHtml(__('Name')) ?></th>
+                    <th scope="col" class="col subject"><?= $block->escapeHtml(__('Subject')) ?></th>
+                    <th scope="col" class="col comment"><?= $block->escapeHtml(__('Comment')) ?></th>
+                    <th scope="col" class="col created"><?= $block->escapeHtml(__('Created At')) ?></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($testimonials as $testimonial) : ?>
+                <tr>
+                    <td data-th="<?= $block->escapeHtml(__('Name')) ?>" class="col name">
+                        <?= $block->escapeHtml($testimonial->getName()); ?>
+                    </td>
+                    <td data-th="<?= $block->escapeHtml(__('Subject')) ?>" class="col subject">
+                        <?= $block->escapeHtml($testimonial->getSubject()); ?>
+                    </td>
+                    <td data-th="<?= $block->escapeHtml(__('Comment')) ?>" class="col comment">
+                        <?= $block->escapeHtml($testimonial->getComment()); ?>
+                    </td>
+                    <td data-th="<?= $block->escapeHtml(__('Created At')) ?>" class="col title">
+                        <?= $block->escapeHtml(date('d/m/Y H:i:s', strtotime($testimonial->getCreatedAt()))); ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()) : ?>
+        <div class="order-products-toolbar toolbar bottom"><?=$block->getPagerHtml(); ?></div>
+    <?php endif; ?>
+<?php else : ?>
+    <div class="message info empty"><span><?= $block->escapeHtml(__('No any record.')); ?></span></div>
+<?php endif; ?>

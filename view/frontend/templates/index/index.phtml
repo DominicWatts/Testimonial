@@ -1,0 +1,46 @@
+<?php
+/** @var \Xigen\Testimonial\Block\Index $block */
+?>
+<form class="form testimonial"
+      action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+      id="testimonial-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= $block->escapeHtml(__('Write Us')) ?></span></legend><br />
+        <div class="field note no-label"><?= $block->escapeHtml(__('Leave some feedback. Either positive or negative and we will make sure it reaches the right people.')) ?></div>
+        <div class="field name required">
+            <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+            <div class="control">
+                <input name="name" id="name" title="<?= $block->escapeHtmlAttr(__('Name')) ?>" value="<?= $block->escapeHtmlAttr($block->getHelper()->getPostValue('name') ?: $block->getHelper()->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field email required">
+            <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input name="email" id="email" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" value="<?= $block->escapeHtmlAttr($block->getHelper()->getPostValue('email') ?: $block->getHelper()->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+            </div>
+        </div>
+        <div class="field subject">
+            <label class="label" for="subject"><span><?= $block->escapeHtml(__('Subject')) ?></span></label>
+            <div class="control">
+                <input name="subject" id="subject" title="<?= $block->escapeHtmlAttr(__('Subject')) ?>" value="<?= $block->escapeHtmlAttr($block->getHelper()->getPostValue('subject')) ?>" class="input-text" type="text" />
+            </div>
+        </div>
+        <div class="field comment required">
+            <label class="label" for="comment"><span><?= $block->escapeHtml(__('What can you tell us?')) ?></span></label>
+            <div class="control">
+                <textarea name="comment" id="comment" title="<?= $block->escapeHtmlAttr(__('What can you tell us?')) ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"><?= $block->escapeHtml($block->getHelper()->getPostValue('comment')) ?></textarea>
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>

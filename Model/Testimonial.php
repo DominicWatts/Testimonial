@@ -34,11 +34,25 @@ class Testimonial extends \Magento\Framework\Model\AbstractModel
         DataObjectHelper $dataObjectHelper,
         \Xigen\Testimonial\Model\ResourceModel\Testimonial $resource,
         \Xigen\Testimonial\Model\ResourceModel\Testimonial\Collection $resourceCollection,
+        \Magento\Framework\Stdlib\DateTime\DateTime $dateTime,
         array $data = []
     ) {
         $this->testimonialDataFactory = $testimonialDataFactory;
         $this->dataObjectHelper = $dataObjectHelper;
+        $this->dateTime = $dateTime;
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+    }
+
+    /**
+     * Before save
+     */
+    public function beforeSave()
+    {
+        $this->setUpdatedAt($this->dateTime->gmtDate());
+        if ($this->isObjectNew()) {
+            $this->setCreatedAt($this->dateTime->gmtDate());
+        }
+        return parent::beforeSave();
     }
 
     /**

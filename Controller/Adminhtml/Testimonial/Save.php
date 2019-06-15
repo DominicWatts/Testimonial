@@ -18,9 +18,11 @@ class Save extends \Magento\Backend\App\Action
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor,
+        \Xigen\Testimonial\Model\TestimonialFactory $testimonialFactory
     ) {
         $this->dataPersistor = $dataPersistor;
+        $this->testimonialFactory = $testimonialFactory;
         parent::__construct($context);
     }
 
@@ -37,7 +39,10 @@ class Save extends \Magento\Backend\App\Action
         if ($data) {
             $id = $this->getRequest()->getParam('testimonial_id');
         
-            $model = $this->_objectManager->create(\Xigen\Testimonial\Model\Testimonial::class)->load($id);
+            $model = $this->testimonialFactory
+                ->create()
+                ->load($id);
+
             if (!$model->getId() && $id) {
                 $this->messageManager->addErrorMessage(__('This Testimonial no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
@@ -61,7 +66,7 @@ class Save extends \Magento\Backend\App\Action
             }
         
             $this->dataPersistor->set('xigen_testimonial_testimonial', $data);
-            return $resultRedirect->setPath('*/*/edit', ['testimonial_id' => $this->getRequest()->getParam('testimonial_id')]);
+            return $resultRedirect->setPath('*/*/edit', ['testimonial_id' => $id]);
         }
         return $resultRedirect->setPath('*/*/');
     }

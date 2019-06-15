@@ -10,6 +10,23 @@ class Delete extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
 {
 
     /**
+     * Constructor
+     *
+     * @param \Magento\Backend\App\Action\Context $context
+     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     */
+    public function __construct(
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\Registry $coreRegistry,
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Xigen\Testimonial\Model\TestimonialFactory $testimonialFactory
+    ) {
+        $this->resultPageFactory = $resultPageFactory;
+        $this->testimonialFactory = $testimonialFactory;
+        parent::__construct($context, $coreRegistry);
+    }
+
+    /**
      * Delete action
      *
      * @return \Magento\Framework\Controller\ResultInterface
@@ -23,7 +40,7 @@ class Delete extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create(\Xigen\Testimonial\Model\Testimonial::class);
+                $model = $this->testimonialFactory->create();
                 $model->load($id);
                 $model->delete();
                 // display success message

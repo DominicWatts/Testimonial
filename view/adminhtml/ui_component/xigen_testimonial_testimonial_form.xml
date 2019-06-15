@@ -100,15 +100,16 @@
 				</validation>
 			</settings>
 		</field>
-		<field formElement="input" name="status" sortOrder="50">
+		<field formElement="select" name="status" sortOrder="50">
 			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
 				<item name="config" xsi:type="array">
 					<item name="source" xsi:type="string">Testimonial</item>
 				</item>
 			</argument>
 			<settings>
 				<dataType>text</dataType>
-				<label translate="true">Status</label>
+				<label translate="true">Approved</label>
 				<dataScope>status</dataScope>
 				<validation>
 					<rule name="required-entry" xsi:type="boolean">false</rule>
