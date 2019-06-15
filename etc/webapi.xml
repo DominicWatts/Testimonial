@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route method="POST" url="/V1/xigen-testimonial/testimonial">
+		<service class="Xigen\Testimonial\Api\TestimonialRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Xigen_Testimonial::Testimonial_save"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/xigen-testimonial/testimonial/search">
+		<service class="Xigen\Testimonial\Api\TestimonialRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Xigen_Testimonial::Testimonial_view"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/xigen-testimonial/testimonial/:testimonialId">
+		<service class="Xigen\Testimonial\Api\TestimonialRepositoryInterface" method="getById"/>
+		<resources>
+			<resource ref="Xigen_Testimonial::Testimonial_view"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/xigen-testimonial/testimonial/:testimonialId">
+		<service class="Xigen\Testimonial\Api\TestimonialRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Xigen_Testimonial::Testimonial_update"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/xigen-testimonial/testimonial/:testimonialId">
+		<service class="Xigen\Testimonial\Api\TestimonialRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Xigen_Testimonial::Testimonial_delete"/>
+		</resources>
+	</route>
+</routes>

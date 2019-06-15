@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Xigen\Testimonial\Api\TestimonialRepositoryInterface" type="Xigen\Testimonial\Model\TestimonialRepository"/>
+	<preference for="Xigen\Testimonial\Api\Data\TestimonialInterface" type="Xigen\Testimonial\Model\Data\Testimonial"/>
+	<preference for="Xigen\Testimonial\Api\Data\TestimonialSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Xigen\Testimonial\Model\ResourceModel\Testimonial\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">xigen_testimonial_testimonial</argument>
+			<argument name="resourceModel" xsi:type="string">Xigen\Testimonial\Model\ResourceModel\Testimonial\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="xigen_testimonial_testimonial_listing_data_source" xsi:type="string">Xigen\Testimonial\Model\ResourceModel\Testimonial\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>
