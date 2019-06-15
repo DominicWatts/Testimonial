@@ -16,10 +16,12 @@ class InlineEdit extends \Magento\Backend\App\Action
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+        \Magento\Framework\Controller\Result\JsonFactory $jsonFactory,
+        \Xigen\Testimonial\Model\TestimonialFactory $testimonialFactory
     ) {
         parent::__construct($context);
         $this->jsonFactory = $jsonFactory;
+        $this->testimonialFactory = $testimonialFactory;
     }
 
     /**
@@ -40,14 +42,16 @@ class InlineEdit extends \Magento\Backend\App\Action
                 $messages[] = __('Please correct the data sent.');
                 $error = true;
             } else {
-                foreach (array_keys($postItems) as $modelid) {
+                foreach (array_keys($postItems) as $modelId) {
                     /** @var \Xigen\Testimonial\Model\Testimonial $model */
-                    $model = $this->_objectManager->create(\Xigen\Testimonial\Model\Testimonial::class)->load($modelid);
+                    $model = $this->testimonialFactory
+                        ->create()
+                        ->load($modelId);
                     try {
-                        $model->setData(array_merge($model->getData(), $postItems[$modelid]));
+                        $model->setData(array_merge($model->getData(), $postItems[$modelId]));
                         $model->save();
                     } catch (\Exception $e) {
-                        $messages[] = "[Testimonial ID: {$modelid}]  {$e->getMessage()}";
+                        $messages[] = "[Testimonial ID: {$modelId}]  {$e->getMessage()}";
                         $error = true;
                     }
                 }

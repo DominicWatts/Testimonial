@@ -18,9 +18,11 @@ class NewAction extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
-        \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
+        \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory,
+        \Xigen\Testimonial\Model\TestimonialFactory $testimonialFactory
     ) {
         $this->resultForwardFactory = $resultForwardFactory;
+        $this->testimonialFactory = $testimonialFactory;
         parent::__construct($context, $coreRegistry);
     }
 

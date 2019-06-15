@@ -18,9 +18,11 @@ class Index extends \Magento\Backend\App\Action
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Xigen\Testimonial\Model\TestimonialFactory $testimonialFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
+        $this->testimonialFactory = $testimonialFactory;
         parent::__construct($context);
     }
 
