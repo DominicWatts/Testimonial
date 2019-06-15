@@ -20,7 +20,8 @@ class InstallSchema implements InstallSchemaInterface
         SchemaSetupInterface $setup,
         ModuleContextInterface $context
     ) {
-        $table_xigen_testimonial_testimonial = $setup->getConnection()->newTable($setup->getTable('xigen_testimonial_testimonial'));
+        $table_xigen_testimonial_testimonial = $setup->getConnection()
+            ->newTable($setup->getTable('xigen_testimonial_testimonial'));
 
         $table_xigen_testimonial_testimonial->addColumn(
             'testimonial_id',

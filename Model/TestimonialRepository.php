@@ -44,7 +44,6 @@ class TestimonialRepository implements TestimonialRepositoryInterface
 
     protected $searchResultsFactory;
 
-
     /**
      * @param ResourceTestimonial $resource
      * @param TestimonialFactory $testimonialFactory

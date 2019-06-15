@@ -16,7 +16,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 
     protected $collection;
 
-
     /**
      * Constructor
      *
