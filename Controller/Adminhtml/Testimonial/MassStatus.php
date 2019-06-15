@@ -2,9 +2,9 @@
 namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
 
 /**
- * Mass-Delete Controller.
+ * Mass-Status Controller.
  */
-class MassDelete extends \Magento\Backend\App\Action
+class MassStatus extends \Magento\Backend\App\Action
 {
     const ADMIN_RESOURCE = 'Xigen_Testimonial::top_level';
     private $filter;
@@ -12,7 +12,7 @@ class MassDelete extends \Magento\Backend\App\Action
     private $testimonialFactory;
 
     /**
-     * assDelete constructor
+     * MassStatus constructor
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Ui\Component\MassAction\Filter $filter
      * @param \Xigen\Testimonial\Model\ResourceModel\Testimonial\CollectionFactory $collectionFactory
@@ -37,28 +37,30 @@ class MassDelete extends \Magento\Backend\App\Action
     public function execute()
     {
         $ids = $this->getRequest()->getPost('selected');
+        $status = $this->getRequest()->getParam('status');
         if ($ids) {
             $collection = $this->testimonialFactory->create()
                 ->getCollection()
                 ->addFieldToFilter('testimonial_id', ['in' => $ids]);
             $collectionSize = $collection->getSize();
-            $deletedItems = 0;
+            $updatedItems = 0;
             foreach ($collection as $item) {
                 try {
-                    $item->delete();
-                    $deletedItems++;
+                    $item->setStatus($status);
+                    $item->save();
+                    $updatedItems++;
                 } catch (\Exception $e) {
                     $this->messageManager->addErrorMessage($e->getMessage());
                 }
             }
-            if ($deletedItems != 0) {
-                if ($collectionSize != $deletedItems) {
+            if ($updatedItems != 0) {
+                if ($collectionSize != $updatedItems) {
                     $this->messageManager->addErrorMessage(
-                        __('Failed to delete %1 testimonial item(s).', $collectionSize - $deletedItems)
+                        __('Failed to update %1 testimonial item(s).', $collectionSize - $updatedItems)
                     );
                 }
                 $this->messageManager->addSuccessMessage(
-                    __('A total of %1 testimonial item(s) have been deleted.', $deletedItems)
+                    __('A total of %1 testimonial item(s) have been updated.', $updatedItems)
                 );
             }
         }
