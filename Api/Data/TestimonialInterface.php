@@ -5,7 +5,6 @@ namespace Xigen\Testimonial\Api\Data;
 
 interface TestimonialInterface extends \Magento\Framework\Api\ExtensibleDataInterface
 {
-
     const NAME = 'name';
     const STATUS = 'status';
     const CREATED_AT = 'created_at';
