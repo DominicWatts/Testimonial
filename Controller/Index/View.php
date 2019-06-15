@@ -6,7 +6,7 @@ namespace Xigen\Testimonial\Controller\Index;
 /**
  * Index Controller class
  */
-class Index extends \Magento\Framework\App\Action\Action
+class View extends \Magento\Framework\App\Action\Action
 {
     protected $resultPageFactory;
 
@@ -32,7 +32,7 @@ class Index extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->getConfig()->getTitle()->set(__('Submit Testimonial'));
+        $resultPage->getConfig()->getTitle()->set(__('Testimonials'));
         return $resultPage;
     }
 }

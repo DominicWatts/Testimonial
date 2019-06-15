@@ -1,5 +1,12 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Magento\Framework\Console\CommandList">
+		<arguments>
+			<argument name="commands" xsi:type="array">
+				<item name="Generate" xsi:type="object">Xigen\Testimonial\Console\Command\Generate</item>
+			</argument>
+		</arguments>
+	</type>
 	<preference for="Xigen\Testimonial\Api\TestimonialRepositoryInterface" type="Xigen\Testimonial\Model\TestimonialRepository"/>
 	<preference for="Xigen\Testimonial\Api\Data\TestimonialInterface" type="Xigen\Testimonial\Model\Data\Testimonial"/>
 	<preference for="Xigen\Testimonial\Api\Data\TestimonialSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>

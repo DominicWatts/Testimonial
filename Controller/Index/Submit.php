@@ -47,13 +47,17 @@ class Submit extends \Magento\Framework\App\Action\Action
         Context $context,
         DataPersistorInterface $dataPersistor,
         LoggerInterface $logger = null,
-        TestimonialFactory $testimonialFactory
+        TestimonialFactory $testimonialFactory,
+        \Xigen\Testimonial\Api\Data\TestimonialInterfaceFactory $testimonialInterfaceFactory,
+        \Xigen\Testimonial\Api\TestimonialRepositoryInterface $testimonialRepositoryInterface
     ) {
         parent::__construct($context);
         $this->context = $context;
         $this->dataPersistor = $dataPersistor;
         $this->logger = $logger ?: ObjectManager::getInstance()->get(LoggerInterface::class);
         $this->testimonialFactory = $testimonialFactory;
+        $this->testimonialInterfaceFactory = $testimonialInterfaceFactory;
+        $this->testimonialRepositoryInterface = $testimonialRepositoryInterface;
     }
     /**
      * Post user question
@@ -67,12 +71,15 @@ class Submit extends \Magento\Framework\App\Action\Action
         }
         try {
             $post = $this->getRequest()->getPostValue();
-            $testimonial = $this->testimonialFactory->create();
-            $testimonial->setName($post['name']);
-            $testimonial->setEmail($post['email']);
-            $testimonial->setSubject($post['subject']);
-            $testimonial->setComment($post['comment']);
-            $testimonial->save();
+
+            $testimonial = $this->testimonialInterfaceFactory
+                ->create()
+                ->setName($post['name'])
+                ->setEmail($post['email'])
+                ->setSubject($post['subject'])
+                ->setComment($post['comment']);
+
+            $testimonial = $this->testimonialRepositoryInterface->save($testimonial);
 
             $this->messageManager->addSuccessMessage(
                 __('Thanks for providing us with your feedback.')
@@ -108,7 +115,7 @@ class Submit extends \Magento\Framework\App\Action\Action
             throw new LocalizedException(__('The email address is invalid. Verify the email address and try again.'));
         }
         if (trim($request->getParam('hideit')) !== '') {
-            throw new \Exception();
+            throw new \LocalizedException();
         }
         return $request->getParams();
     }

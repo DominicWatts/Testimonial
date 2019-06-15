@@ -10,6 +10,11 @@ class Index extends \Magento\Framework\View\Element\Template
 {
 
     /**
+     * @var \Xigen\Testimonial\Helper\Testimonial
+     */
+    protected $helper;
+
+    /**
      * Constructor
      *
      * @param \Magento\Framework\View\Element\Template\Context  $context

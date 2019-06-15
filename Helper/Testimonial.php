@@ -15,6 +15,10 @@ use Magento\Framework\App\Request\DataPersistorInterface;
  */
 class Testimonial extends AbstractHelper
 {
+    const APPROVED = 1;
+    const DISAPPROVED = 0;
+    const TESTIMONIALS_PER_PAGE = 5;
+
     /**
      * Customer session
      *
