@@ -1,13 +1,13 @@
 <?xml version="1.0" ?>
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-	<body>
+    <body>
         <referenceBlock name="page.main.title">
             <action method="setPageTitle">
                 <argument translate="true" name="title" xsi:type="string">View Testimonials</argument>
             </action>
         </referenceBlock>
-		<referenceContainer name="content">
-			<block class="Xigen\Testimonial\Block\Index\View" name="index.view" template="Xigen_Testimonial::index/view.phtml" cacheable="false" />
-		</referenceContainer>
-	</body>
+        <referenceContainer name="content">
+            <block class="Xigen\Testimonial\Block\Index\View" name="index.view" template="Xigen_Testimonial::index/view.phtml" cacheable="false" />
+        </referenceContainer>
+    </body>
 </page>

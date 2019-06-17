@@ -1,15 +1,15 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
-	<acl>
-		<resources>
-			<resource id="Magento_Backend::admin">
-				<resource id="Xigen_Testimonial::Testimonial" sortOrder="10" title="Testimonial">
-					<resource id="Xigen_Testimonial::Testimonial_save" sortOrder="10" title="Save Testimonial"/>
-					<resource id="Xigen_Testimonial::Testimonial_delete" sortOrder="20" title="Delete Testimonial"/>
-					<resource id="Xigen_Testimonial::Testimonial_update" sortOrder="30" title="Update Testimonial"/>
-					<resource id="Xigen_Testimonial::Testimonial_view" sortOrder="40" title="View Testimonial"/>
-				</resource>
-			</resource>
-		</resources>
-	</acl>
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Xigen_Testimonial::Testimonial" sortOrder="10" title="Testimonial">
+                    <resource id="Xigen_Testimonial::Testimonial_save" sortOrder="10" title="Save Testimonial"/>
+                    <resource id="Xigen_Testimonial::Testimonial_delete" sortOrder="20" title="Delete Testimonial"/>
+                    <resource id="Xigen_Testimonial::Testimonial_update" sortOrder="30" title="Update Testimonial"/>
+                    <resource id="Xigen_Testimonial::Testimonial_view" sortOrder="40" title="View Testimonial"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
 </config>
