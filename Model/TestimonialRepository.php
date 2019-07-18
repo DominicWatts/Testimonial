@@ -122,7 +122,6 @@ class TestimonialRepository implements TestimonialRepositoryInterface
     public function save(
         \Xigen\Testimonial\Api\Data\TestimonialInterface $testimonial
     ) {
-
         $testimonialData = $this->extensibleDataObjectConverter->toNestedArray(
             $testimonial,
             [],
