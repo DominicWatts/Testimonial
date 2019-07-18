@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Model\Testimonial;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
@@ -11,14 +10,23 @@ use Xigen\Testimonial\Model\ResourceModel\Testimonial\CollectionFactory;
  */
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
+    /**
+     * @var array
+     */
     protected $loadedData;
+
+    /**
+     * @var DataPersistorInterface
+     */
     protected $dataPersistor;
 
+    /**
+     * @var \Xigen\Testimonial\Model\ResourceModel\Testimonial\Collection
+     */
     protected $collection;
 
     /**
      * Constructor
-     *
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
@@ -43,7 +51,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 
     /**
      * Get data
-     *
      * @return array
      */
     public function getData()
@@ -56,14 +63,14 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             $this->loadedData[$model->getId()] = $model->getData();
         }
         $data = $this->dataPersistor->get('xigen_testimonial_testimonial');
-        
+
         if (!empty($data)) {
             $model = $this->collection->getNewEmptyItem();
             $model->setData($data);
             $this->loadedData[$model->getId()] = $model->getData();
             $this->dataPersistor->clear('xigen_testimonial_testimonial');
         }
-        
+
         return $this->loadedData;
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Controller\Adminhtml;
 
 /**
@@ -9,6 +8,10 @@ namespace Xigen\Testimonial\Controller\Adminhtml;
 abstract class Testimonial extends \Magento\Backend\App\Action
 {
     const ADMIN_RESOURCE = 'Xigen_Testimonial::top_level';
+
+    /**
+     * @var \Magento\Framework\Registry
+     */
     protected $_coreRegistry;
 
     /**
@@ -25,7 +28,6 @@ abstract class Testimonial extends \Magento\Backend\App\Action
 
     /**
      * Init page
-     *
      * @param \Magento\Backend\Model\View\Result\Page $resultPage
      * @return \Magento\Backend\Model\View\Result\Page
      */

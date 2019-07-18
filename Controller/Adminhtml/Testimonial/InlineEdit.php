@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
 
 /**
@@ -8,7 +7,15 @@ namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
  */
 class InlineEdit extends \Magento\Backend\App\Action
 {
+    /**
+     * @var \Magento\Framework\Controller\Result\JsonFactory
+     */
     protected $jsonFactory;
+
+    /**
+     * @var \Xigen\Testimonial\Model\TestimonialFactory
+     */
+    protected $testimonialFactory;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -26,7 +33,6 @@ class InlineEdit extends \Magento\Backend\App\Action
 
     /**
      * Inline edit action
-     *
      * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
@@ -35,7 +41,7 @@ class InlineEdit extends \Magento\Backend\App\Action
         $resultJson = $this->jsonFactory->create();
         $error = false;
         $messages = [];
-        
+
         if ($this->getRequest()->getParam('isAjax')) {
             $postItems = $this->getRequest()->getParam('items', []);
             if (!count($postItems)) {
@@ -57,10 +63,10 @@ class InlineEdit extends \Magento\Backend\App\Action
                 }
             }
         }
-        
+
         return $resultJson->setData([
             'messages' => $messages,
-            'error' => $error
+            'error' => $error,
         ]);
     }
 }

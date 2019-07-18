@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
 
 /**
@@ -10,10 +9,21 @@ class Delete extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
 {
 
     /**
-     * Constructor
-     *
+     * @var \Magento\Framework\View\Result\PageFactory
+     */
+    private $resultPageFactory;
+
+    /**
+     * @var \Xigen\Testimonial\Model\TestimonialFactory
+     */
+    private $testimonialFactory;
+
+    /**
+     * Delete constructor.
      * @param \Magento\Backend\App\Action\Context $context
+     * @param \Magento\Framework\Registry $coreRegistry
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param \Xigen\Testimonial\Model\TestimonialFactory $testimonialFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
@@ -28,7 +38,6 @@ class Delete extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
 
     /**
      * Delete action
-     *
      * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()

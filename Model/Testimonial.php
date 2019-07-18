@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Model;
 
 use Xigen\Testimonial\Api\Data\TestimonialInterfaceFactory;
@@ -12,19 +11,35 @@ use Xigen\Testimonial\Api\Data\TestimonialInterface;
  */
 class Testimonial extends \Magento\Framework\Model\AbstractModel
 {
+    /**
+     * @var TestimonialInterfaceFactory
+     */
     protected $testimonialDataFactory;
 
+    /**
+     * @var DataObjectHelper
+     */
     protected $dataObjectHelper;
 
+    /**
+     * @var string
+     */
     protected $_eventPrefix = 'xigen_testimonial_testimonial';
 
     /**
+     * @var \Magento\Framework\Stdlib\DateTime\DateTime
+     */
+    private $dateTime;
+
+    /**
+     * Testimonial constructor.
      * @param \Magento\Framework\Model\Context $context
      * @param \Magento\Framework\Registry $registry
      * @param TestimonialInterfaceFactory $testimonialDataFactory
      * @param DataObjectHelper $dataObjectHelper
-     * @param \Xigen\Testimonial\Model\ResourceModel\Testimonial $resource
-     * @param \Xigen\Testimonial\Model\ResourceModel\Testimonial\Collection $resourceCollection
+     * @param ResourceModel\Testimonial $resource
+     * @param ResourceModel\Testimonial\Collection $resourceCollection
+     * @param \Magento\Framework\Stdlib\DateTime\DateTime $dateTime
      * @param array $data
      */
     public function __construct(
@@ -62,14 +77,14 @@ class Testimonial extends \Magento\Framework\Model\AbstractModel
     public function getDataModel()
     {
         $testimonialData = $this->getData();
-        
+
         $testimonialDataObject = $this->testimonialDataFactory->create();
         $this->dataObjectHelper->populateWithArray(
             $testimonialDataObject,
             $testimonialData,
             TestimonialInterface::class
         );
-        
+
         return $testimonialDataObject;
     }
 }

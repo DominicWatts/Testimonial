@@ -1,4 +1,5 @@
 <?php
+
 namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
 
 /**
@@ -7,8 +8,15 @@ namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
 class MassStatus extends \Magento\Backend\App\Action
 {
     const ADMIN_RESOURCE = 'Xigen_Testimonial::top_level';
+
+    /**
+     * @var \Magento\Ui\Component\MassAction\Filter
+     */
     private $filter;
-    private $collectionFactory;
+
+    /**
+     * @var \Xigen\Testimonial\Model\TestimonialFactory
+     */
     private $testimonialFactory;
 
     /**
@@ -28,9 +36,9 @@ class MassStatus extends \Magento\Backend\App\Action
         $this->testimonialFactory = $testimonialFactory;
         parent::__construct($context);
     }
+
     /**
      * Execute action.
-     *
      * @return \Magento\Backend\Model\View\Result\Redirect
      * @throws \Magento\Framework\Exception\LocalizedException|\Exception
      */

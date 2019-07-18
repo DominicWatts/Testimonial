@@ -17,10 +17,25 @@ class Generate extends Command
     const GENERATE_ARGUMENT = 'generate';
     const LIMIT_OPTION = 'limit';
 
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
     private $logger;
+
+    /**
+     * @var \Magento\Framework\App\State
+     */
     private $state;
+
+    /**
+     * @var \Magento\Framework\Stdlib\DateTime\DateTime
+     */
     private $dateTime;
-    private $customerHelper;
+
+    /**
+     * @var \Xigen\Testimonial\Helper\Console
+     */
+    private $consoleHelper;
 
     public function __construct(
         \Psr\Log\LoggerInterface $logger,
@@ -34,6 +49,7 @@ class Generate extends Command
         $this->consoleHelper = $consoleHelper;
         parent::__construct();
     }
+
     /**
      * {@inheritdoc}
      */
@@ -49,7 +65,7 @@ class Generate extends Command
         $limit = $this->input->getOption(self::LIMIT_OPTION) ?: 5;
 
         if ($generate) {
-            $this->output->writeln('['.$this->dateTime->gmtDate().'] Start');
+            $this->output->writeln('[' . $this->dateTime->gmtDate() . '] Start');
             $progress = new ProgressBar($this->output, $limit);
             $progress->start();
             for ($generate = 1; $generate <= $limit; $generate++) {
@@ -58,9 +74,10 @@ class Generate extends Command
             }
             $progress->finish();
             $this->output->writeln('');
-            $this->output->writeln('['.$this->dateTime->gmtDate().'] Finish');
+            $this->output->writeln('[' . $this->dateTime->gmtDate() . '] Finish');
         }
     }
+
     /**
      * {@inheritdoc}
      * xigen:faker:testimonial [-l|--limit [LIMIT]] [--] <generate>.
