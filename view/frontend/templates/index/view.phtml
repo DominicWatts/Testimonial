@@ -1,18 +1,27 @@
+<?php
+/** @var \Xigen\Testimonial\Block\View $block */
+?>
+    <div class="order-products-toolbar toolbar bottom">
+        <p><?= __("Please submit feedback - we would love to hear from you"); ?></p>
+        <a href="<?= $block->getUrl('testimonial'); ?>" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+            <span><?= $block->escapeHtml(__('Provide Feedback')) ?></span>
+        </a>
+        <br/>
+    </div>
+
 <?php if ($block->getPagerHtml()) : ?>
-<div class="order-products-toolbar toolbar bottom"><?=$block->getPagerHtml(); ?></div>
-<?php endif; ?>
-<?php $testimonials = $block->getCustomCollection(); ?>
-<?php if ($testimonials && count($testimonials)) : ?>
+    <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+<?php endif; ?><?php $testimonials = $block->getCustomCollection(); ?><?php if ($testimonials && count($testimonials)) : ?>
     <div class="table-wrapper orders-history">
         <table class="data table table-order-items history" id="my-orders-table">
             <caption class="table-caption"><?= $block->escapeHtml(__('Testimonials')) ?></caption>
             <thead>
-                <tr>
-                    <th scope="col" class="col name"><?= $block->escapeHtml(__('Name')) ?></th>
-                    <th scope="col" class="col subject"><?= $block->escapeHtml(__('Subject')) ?></th>
-                    <th scope="col" class="col comment"><?= $block->escapeHtml(__('Comment')) ?></th>
-                    <th scope="col" class="col created"><?= $block->escapeHtml(__('Created At')) ?></th>
-                </tr>
+            <tr>
+                <th scope="col" class="col name"><?= $block->escapeHtml(__('Name')) ?></th>
+                <th scope="col" class="col subject"><?= $block->escapeHtml(__('Subject')) ?></th>
+                <th scope="col" class="col comment"><?= $block->escapeHtml(__('Comment')) ?></th>
+                <th scope="col" class="col created"><?= $block->escapeHtml(__('Created At')) ?></th>
+            </tr>
             </thead>
             <tbody>
             <?php foreach ($testimonials as $testimonial) : ?>
@@ -35,8 +44,7 @@
         </table>
     </div>
     <?php if ($block->getPagerHtml()) : ?>
-        <div class="order-products-toolbar toolbar bottom"><?=$block->getPagerHtml(); ?></div>
-    <?php endif; ?>
-<?php else : ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+    <?php endif; ?><?php else : ?>
     <div class="message info empty"><span><?= $block->escapeHtml(__('No any record.')); ?></span></div>
 <?php endif; ?>
