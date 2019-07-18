@@ -1,14 +1,11 @@
 <?php
 /** @var \Xigen\Testimonial\Block\Index $block */
 ?>
-<form class="form testimonial"
-      action="<?= $block->escapeUrl($block->getFormAction()) ?>"
-      id="testimonial-form"
-      method="post"
-      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
-      data-mage-init='{"validation":{}}'>
+<form class="form testimonial" action="<?= $block->escapeUrl($block->getFormAction()) ?>" id="testimonial-form" method="post" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>" data-mage-init='{"validation":{}}'>
+    <?= $block->getBlockHtml('formkey') ?>
     <fieldset class="fieldset">
-        <legend class="legend"><span><?= $block->escapeHtml(__('Write Us')) ?></span></legend><br />
+        <legend class="legend"><span><?= $block->escapeHtml(__('Write Us')) ?></span></legend>
+        <br/>
         <div class="field note no-label"><?= $block->escapeHtml(__('Leave some feedback. Either positive or negative and we will make sure it reaches the right people.')) ?></div>
         <div class="field name required">
             <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
@@ -25,7 +22,7 @@
         <div class="field subject">
             <label class="label" for="subject"><span><?= $block->escapeHtml(__('Subject')) ?></span></label>
             <div class="control">
-                <input name="subject" id="subject" title="<?= $block->escapeHtmlAttr(__('Subject')) ?>" value="<?= $block->escapeHtmlAttr($block->getHelper()->getPostValue('subject')) ?>" class="input-text" type="text" />
+                <input name="subject" id="subject" title="<?= $block->escapeHtmlAttr(__('Subject')) ?>" value="<?= $block->escapeHtmlAttr($block->getHelper()->getPostValue('subject')) ?>" class="input-text" type="text"/>
             </div>
         </div>
         <div class="field comment required">
@@ -37,7 +34,7 @@
     </fieldset>
     <div class="actions-toolbar">
         <div class="primary">
-            <input type="hidden" name="hideit" id="hideit" value="" />
+            <input type="hidden" name="hideit" id="hideit" value=""/>
             <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
                 <span><?= $block->escapeHtml(__('Submit')) ?></span>
             </button>

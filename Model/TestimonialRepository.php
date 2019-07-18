@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Model;
 
 use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
@@ -23,25 +22,59 @@ use Magento\Framework\Reflection\DataObjectProcessor;
  */
 class TestimonialRepository implements TestimonialRepositoryInterface
 {
+    /**
+     * @var ResourceTestimonial
+     */
     protected $resource;
 
+    /**
+     * @var JoinProcessorInterface
+     */
     protected $extensionAttributesJoinProcessor;
 
+    /**
+     * @var ExtensibleDataObjectConverter
+     */
     protected $extensibleDataObjectConverter;
+
+    /**
+     * @var TestimonialFactory
+     */
     protected $testimonialFactory;
 
+    /**
+     * @var TestimonialCollectionFactory
+     */
     protected $testimonialCollectionFactory;
 
+    /**
+     * @var DataObjectProcessor
+     */
     protected $dataObjectProcessor;
 
+    /**
+     * @var StoreManagerInterface
+     */
     private $storeManager;
 
+    /**
+     * @var TestimonialInterfaceFactory
+     */
     protected $dataTestimonialFactory;
 
+    /**
+     * @var CollectionProcessorInterface
+     */
     private $collectionProcessor;
 
+    /**
+     * @var DataObjectHelper
+     */
     protected $dataObjectHelper;
 
+    /**
+     * @var TestimonialSearchResultsInterfaceFactory
+     */
     protected $searchResultsFactory;
 
     /**
@@ -89,19 +122,15 @@ class TestimonialRepository implements TestimonialRepositoryInterface
     public function save(
         \Xigen\Testimonial\Api\Data\TestimonialInterface $testimonial
     ) {
-        /* if (empty($testimonial->getStoreId())) {
-            $storeId = $this->storeManager->getStore()->getId();
-            $testimonial->setStoreId($storeId);
-        } */
-        
+
         $testimonialData = $this->extensibleDataObjectConverter->toNestedArray(
             $testimonial,
             [],
             \Xigen\Testimonial\Api\Data\TestimonialInterface::class
         );
-        
+
         $testimonialModel = $this->testimonialFactory->create()->setData($testimonialData);
-        
+
         try {
             $this->resource->save($testimonialModel);
         } catch (\Exception $exception) {
@@ -133,22 +162,22 @@ class TestimonialRepository implements TestimonialRepositoryInterface
         \Magento\Framework\Api\SearchCriteriaInterface $criteria
     ) {
         $collection = $this->testimonialCollectionFactory->create();
-        
+
         $this->extensionAttributesJoinProcessor->process(
             $collection,
             \Xigen\Testimonial\Api\Data\TestimonialInterface::class
         );
-        
+
         $this->collectionProcessor->process($criteria, $collection);
-        
+
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setSearchCriteria($criteria);
-        
+
         $items = [];
         foreach ($collection as $model) {
             $items[] = $model->getDataModel();
         }
-        
+
         $searchResults->setItems($items);
         $searchResults->setTotalCount($collection->getSize());
         return $searchResults;

@@ -16,15 +16,16 @@ use Xigen\Testimonial\Model\TestimonialFactory;
  */
 class Submit extends \Magento\Framework\App\Action\Action
 {
-    /**
-     * @var DataPersistorInterface
-     */
-    private $dataPersistor;
 
     /**
      * @var Context
      */
-    private $context;
+    protected $context;
+
+    /**
+     * @var DataPersistorInterface
+     */
+    private $dataPersistor;
 
     /**
      * @var LoggerInterface
@@ -37,11 +38,28 @@ class Submit extends \Magento\Framework\App\Action\Action
     private $testimonialFactory;
 
     /**
+     * @var \Xigen\Testimonial\Api\Data\TestimonialInterfaceFactory
+     */
+    private $testimonialInterfaceFactory;
+
+    /**
+     * @var \Xigen\Testimonial\Api\TestimonialRepositoryInterface
+     */
+    private $testimonialRepositoryInterface;
+
+    /**
+     * @var \Magento\Framework\Data\Form\FormKey\Validator
+     */
+    private $formKeyValidator;
+
+    /**
+     * Submit constructor.
      * @param Context $context
-     * @param ConfigInterface $contactsConfig
-     * @param MailInterface $mail
      * @param DataPersistorInterface $dataPersistor
-     * @param LoggerInterface $logger
+     * @param LoggerInterface|null $logger
+     * @param TestimonialFactory $testimonialFactory
+     * @param \Xigen\Testimonial\Api\Data\TestimonialInterfaceFactory $testimonialInterfaceFactory
+     * @param \Xigen\Testimonial\Api\TestimonialRepositoryInterface $testimonialRepositoryInterface
      */
     public function __construct(
         Context $context,
@@ -49,7 +67,8 @@ class Submit extends \Magento\Framework\App\Action\Action
         LoggerInterface $logger = null,
         TestimonialFactory $testimonialFactory,
         \Xigen\Testimonial\Api\Data\TestimonialInterfaceFactory $testimonialInterfaceFactory,
-        \Xigen\Testimonial\Api\TestimonialRepositoryInterface $testimonialRepositoryInterface
+        \Xigen\Testimonial\Api\TestimonialRepositoryInterface $testimonialRepositoryInterface,
+        \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator
     ) {
         parent::__construct($context);
         $this->context = $context;
@@ -58,17 +77,25 @@ class Submit extends \Magento\Framework\App\Action\Action
         $this->testimonialFactory = $testimonialFactory;
         $this->testimonialInterfaceFactory = $testimonialInterfaceFactory;
         $this->testimonialRepositoryInterface = $testimonialRepositoryInterface;
+        $this->formKeyValidator = $formKeyValidator;
     }
+
     /**
      * Post user question
-     *
      * @return Redirect
      */
     public function execute()
     {
-        if (!$this->getRequest()->isPost()) {
+        $request = $this->getRequest();
+
+        if (!$request->isPost() ||
+            !$this->formKeyValidator->validate($request)) {
+            $this->messageManager->addErrorMessage(
+                __("There was a problem with your submission. Please try again.")
+            );
             return $this->resultRedirectFactory->create()->setPath('*/*/');
         }
+
         try {
             $post = $this->getRequest()->getPostValue();
 
@@ -111,7 +138,7 @@ class Submit extends \Magento\Framework\App\Action\Action
         if (trim($request->getParam('comment')) === '') {
             throw new LocalizedException(__('Enter the comment and try again.'));
         }
-        if (false === \strpos($request->getParam('email'), '@')) {
+        if (!\Zend_Validate::is(trim($request->getParam('email')), 'EmailAddress')) {
             throw new LocalizedException(__('The email address is invalid. Verify the email address and try again.'));
         }
         if (trim($request->getParam('hideit')) !== '') {

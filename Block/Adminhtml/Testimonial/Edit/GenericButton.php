@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Block\Adminhtml\Testimonial\Edit;
 
 use Magento\Backend\Block\Widget\Context;
@@ -10,6 +9,9 @@ use Magento\Backend\Block\Widget\Context;
  */
 abstract class GenericButton
 {
+    /**
+     * @var Context
+     */
     protected $context;
 
     /**
@@ -22,7 +24,6 @@ abstract class GenericButton
 
     /**
      * Return model ID
-     *
      * @return int|null
      */
     public function getModelId()
@@ -32,9 +33,8 @@ abstract class GenericButton
 
     /**
      * Generate url by route and parameters
-     *
-     * @param   string $route
-     * @param   array $params
+     * @param string $route
+     * @param array $params
      * @return  string
      */
     public function getUrl($route = '', $params = [])

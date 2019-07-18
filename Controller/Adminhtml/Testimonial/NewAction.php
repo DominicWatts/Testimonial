@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
 
 /**
@@ -8,7 +7,15 @@ namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
  */
 class NewAction extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
 {
+    /**
+     * @var \Magento\Backend\Model\View\Result\ForwardFactory
+     */
     protected $resultForwardFactory;
+
+    /**
+     * @var \Xigen\Testimonial\Model\TestimonialFactory
+     */
+    protected $testimonialFactory;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -28,7 +35,6 @@ class NewAction extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
 
     /**
      * New action
-     *
      * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()

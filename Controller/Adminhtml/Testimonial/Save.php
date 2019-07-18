@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
 
 use Magento\Framework\Exception\LocalizedException;
@@ -10,7 +9,15 @@ use Magento\Framework\Exception\LocalizedException;
  */
 class Save extends \Magento\Backend\App\Action
 {
+    /**
+     * @var \Magento\Framework\App\Request\DataPersistorInterface
+     */
     protected $dataPersistor;
+
+    /**
+     * @var \Xigen\Testimonial\Model\TestimonialFactory
+     */
+    protected $testimonialFactory;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -28,7 +35,6 @@ class Save extends \Magento\Backend\App\Action
 
     /**
      * Save action
-     *
      * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
@@ -38,7 +44,7 @@ class Save extends \Magento\Backend\App\Action
         $data = $this->getRequest()->getPostValue();
         if ($data) {
             $id = $this->getRequest()->getParam('testimonial_id');
-        
+
             $model = $this->testimonialFactory
                 ->create()
                 ->load($id);
@@ -47,14 +53,14 @@ class Save extends \Magento\Backend\App\Action
                 $this->messageManager->addErrorMessage(__('This Testimonial no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
             }
-        
+
             $model->setData($data);
-        
+
             try {
                 $model->save();
                 $this->messageManager->addSuccessMessage(__('You saved the Testimonial.'));
                 $this->dataPersistor->clear('xigen_testimonial_testimonial');
-        
+
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['testimonial_id' => $model->getId()]);
                 }
@@ -64,7 +70,7 @@ class Save extends \Magento\Backend\App\Action
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the Testimonial.'));
             }
-        
+
             $this->dataPersistor->set('xigen_testimonial_testimonial', $data);
             return $resultRedirect->setPath('*/*/edit', ['testimonial_id' => $id]);
         }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Block\Index;
 
 /**
@@ -15,9 +14,13 @@ class View extends \Magento\Framework\View\Element\Template
     protected $testimonial;
 
     /**
+     * @var int
+     */
+    protected $limit;
+
+    /**
      * Constructor
-     *
-     * @param \Magento\Framework\View\Element\Template\Context  $context
+     * @param \Magento\Framework\View\Element\Template\Context $context
      * @param array $data
      */
     public function __construct(
@@ -30,6 +33,10 @@ class View extends \Magento\Framework\View\Element\Template
         parent::__construct($context, $data);
     }
 
+    /**
+     * @return $this|\Magento\Framework\View\Element\Template
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
     protected function _prepareLayout()
     {
         parent::_prepareLayout();
@@ -43,7 +50,7 @@ class View extends \Magento\Framework\View\Element\Template
                 ->setAvailableLimit([
                     $this->limit * 1 => $this->limit * 1,
                     $this->limit * 2 => $this->limit * 2,
-                    $this->limit * 3 => $this->limit * 3
+                    $this->limit * 3 => $this->limit * 3,
                 ])
                 ->setShowPerPage(true)->setCollection(
                     $this->getCustomCollection()
@@ -53,10 +60,18 @@ class View extends \Magento\Framework\View\Element\Template
         }
         return $this;
     }
+
+    /**
+     * @return string
+     */
     public function getPagerHtml()
     {
         return $this->getChildHtml('pager');
     }
+
+    /**
+     * @return mixed
+     */
     public function getCustomCollection()
     {
         $get = $this->getRequest()->getParams();

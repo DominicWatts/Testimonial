@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Ui\Component\Listing\Column;
 
 /**
@@ -11,6 +10,10 @@ class TestimonialActions extends \Magento\Ui\Component\Listing\Columns\Column
     const URL_PATH_DELETE = 'xigen_testimonial/testimonial/delete';
     const URL_PATH_DETAILS = 'xigen_testimonial/testimonial/details';
     const URL_PATH_EDIT = 'xigen_testimonial/testimonial/edit';
+
+    /**
+     * @var \Magento\Framework\UrlInterface
+     */
     protected $urlBuilder;
 
     /**
@@ -33,7 +36,6 @@ class TestimonialActions extends \Magento\Ui\Component\Listing\Columns\Column
 
     /**
      * Prepare Data Source
-     *
      * @param array $dataSource
      * @return array
      */
@@ -47,29 +49,29 @@ class TestimonialActions extends \Magento\Ui\Component\Listing\Columns\Column
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_EDIT,
                                 [
-                                    'testimonial_id' => $item['testimonial_id']
+                                    'testimonial_id' => $item['testimonial_id'],
                                 ]
                             ),
-                            'label' => __('Edit')
+                            'label' => __('Edit'),
                         ],
                         'delete' => [
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_DELETE,
                                 [
-                                    'testimonial_id' => $item['testimonial_id']
+                                    'testimonial_id' => $item['testimonial_id'],
                                 ]
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
                                 'title' => __('Delete "${ $.$data.title }"'),
-                                'message' => __('Are you sure you wan\'t to delete a "${ $.$data.title }" record?')
-                            ]
-                        ]
+                                'message' => __('Are you sure you wan\'t to delete a "${ $.$data.title }" record?'),
+                            ],
+                        ],
                     ];
                 }
             }
         }
-        
+
         return $dataSource;
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-
 namespace Xigen\Testimonial\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
+use Xigen\Testimonial\Helper\Testimonial;
 
 /**
  * Console helper class
@@ -13,8 +13,25 @@ class Console extends AbstractHelper
     const COUNTRY_CODE = 'GB';
     const LOCALE_CODE = 'en_GB';
 
+    /**
+     * @var \Faker\Generator
+     */
     private $faker;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
     private $logger;
+
+    /**
+     * @var \Xigen\Testimonial\Api\Data\TestimonialInterfaceFactory
+     */
+    private $testimonialInterfaceFactory;
+
+    /**
+     * @var \Xigen\Testimonial\Api\TestimonialRepositoryInterface
+     */
+    private $testimonialRepositoryInterface;
 
     /**
      * @param \Magento\Framework\App\Helper\Context $context
@@ -45,11 +62,12 @@ class Console extends AbstractHelper
             ->setSubject($this->faker->sentence)
             ->setComment($this->faker->paragraph)
             ->setStatus(rand(
-                \Xigen\Testimonial\Helper\Testimonial::DISAPPROVED,
-                \Xigen\Testimonial\Helper\Testimonial::APPROVED
+                Testimonial::DISAPPROVED,
+                Testimonial::APPROVED
             ));
         try {
-            $testimonial = $this->testimonialRepositoryInterface->save($testimonial);
+            $testimonial = $this->testimonialRepositoryInterface
+                ->save($testimonial);
             return $testimonial;
         } catch (\Exception $e) {
             $this->logger->critical($e);

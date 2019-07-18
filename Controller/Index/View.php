@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Controller\Index;
 
 /**
@@ -8,12 +7,14 @@ namespace Xigen\Testimonial\Controller\Index;
  */
 class View extends \Magento\Framework\App\Action\Action
 {
+    /**
+     * @var \Magento\Framework\View\Result\PageFactory
+     */
     protected $resultPageFactory;
 
     /**
-     * Constructor
-     *
-     * @param \Magento\Framework\App\Action\Context  $context
+     * View constructor.
+     * @param \Magento\Framework\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      */
     public function __construct(
@@ -26,7 +27,6 @@ class View extends \Magento\Framework\App\Action\Action
 
     /**
      * Execute view action
-     *
      * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
 
 /**
@@ -8,12 +7,22 @@ namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
  */
 class Edit extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
 {
+    /**
+     * @var \Magento\Framework\View\Result\PageFactory
+     */
     protected $resultPageFactory;
 
     /**
+     * @var \Xigen\Testimonial\Model\TestimonialFactory
+     */
+    protected $testimonialFactory;
+
+    /**
+     * Edit constructor.
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\Registry $coreRegistry
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param \Xigen\Testimonial\Model\TestimonialFactory $testimonialFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
@@ -28,7 +37,6 @@ class Edit extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
 
     /**
      * Edit action
-     *
      * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
@@ -36,7 +44,7 @@ class Edit extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('testimonial_id');
         $model = $this->testimonialFactory->create();
-        
+
         // 2. Initial checking
         if ($id) {
             $model->load($id);
@@ -48,7 +56,7 @@ class Edit extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
             }
         }
         $this->_coreRegistry->register('xigen_testimonial_testimonial', $model);
-        
+
         // 3. Build edit form
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();

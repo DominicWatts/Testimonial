@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
 
 /**
@@ -8,11 +7,18 @@ namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
  */
 class Index extends \Magento\Backend\App\Action
 {
+    /**
+     * @var \Magento\Framework\View\Result\PageFactory
+     */
     protected $resultPageFactory;
 
     /**
+     * @var \Xigen\Testimonial\Model\TestimonialFactory
+     */
+    protected $testimonialFactory;
+
+    /**
      * Constructor
-     *
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      */
@@ -28,7 +34,6 @@ class Index extends \Magento\Backend\App\Action
 
     /**
      * Index action
-     *
      * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
