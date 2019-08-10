@@ -54,7 +54,7 @@ class InlineEdit extends \Magento\Backend\App\Action
                         ->create()
                         ->load($modelId);
                     try {
-                        $model->setData(array_merge($model->getData(), $postItems[$modelId]));
+                        $model->setData($postItems[$modelId] + $model->getData());
                         $model->save();
                     } catch (\Exception $e) {
                         $messages[] = "[Testimonial ID: {$modelId}]  {$e->getMessage()}";
