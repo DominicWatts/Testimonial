@@ -3,7 +3,7 @@
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="Generate" xsi:type="object">Xigen\Testimonial\Console\Command\Generate</item>
+                <item name="Testimonial_Generate" xsi:type="object">Xigen\Testimonial\Console\Command\Generate</item>
             </argument>
         </arguments>
     </type>
