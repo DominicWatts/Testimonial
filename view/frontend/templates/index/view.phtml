@@ -1,5 +1,6 @@
 <?php
 /** @var \Xigen\Testimonial\Block\View $block */
+// phpcs:disable Magento2.Files.LineLength.MaxExceeded 
 ?>
     <div class="order-products-toolbar toolbar bottom">
         <p><?= $block->escapeHtml(__("Please submit feedback - we would love to hear from you")); ?></p>
@@ -45,6 +46,7 @@
     </div>
     <?php if ($block->getPagerHtml()) : ?>
         <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
-    <?php endif; ?><?php else : ?>
+    <?php endif; ?><?php
+else : ?>
     <div class="message info empty"><span><?= $block->escapeHtml(__('No any record.')); ?></span></div>
 <?php endif; ?>
