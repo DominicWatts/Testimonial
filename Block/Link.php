@@ -3,8 +3,7 @@
 namespace Xigen\Testimonial\Block;
 
 /**
- * Class Link
- * @package Xigen\Testimonial\Block
+ * Testimonials link block class for header
  */
 class Link extends \Magento\Framework\View\Element\Html\Link
 {

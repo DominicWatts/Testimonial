@@ -6,7 +6,7 @@ namespace Xigen\Testimonial\Block\Adminhtml\Testimonial\Edit;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 /**
- * DeleteButton class
+ * Testimonials adminhtml testimonial edit block delete button class
  */
 class DeleteButton extends GenericButton implements ButtonProviderInterface
 {

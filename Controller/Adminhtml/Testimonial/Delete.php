@@ -3,7 +3,7 @@
 namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
 
 /**
- * Delete controller class
+ * Testimonials delete controller class
  */
 class Delete extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
 {

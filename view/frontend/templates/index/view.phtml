@@ -1,18 +1,21 @@
 <?php
 /** @var \Xigen\Testimonial\Block\View $block */
-// phpcs:disable Magento2.Files.LineLength.MaxExceeded 
 ?>
     <div class="order-products-toolbar toolbar bottom">
         <p><?= $block->escapeHtml(__("Please submit feedback - we would love to hear from you")); ?></p>
-        <a href="<?= $block->escapeUrl($block->getUrl('testimonial')); ?>" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+        <a href="<?= $block->escapeUrl($block->getUrl('testimonial')); ?>" 
+           title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" 
+           class="action submit primary">
             <span><?= $block->escapeHtml(__('Provide Feedback')) ?></span>
         </a>
         <br/>
     </div>
 
-<?php if ($block->getPagerHtml()) : ?>
+<?php if ($block->getPagerHtml()): ?>
     <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
-<?php endif; ?><?php $testimonials = $block->getCustomCollection(); ?><?php if ($testimonials && count($testimonials)) : ?>
+<?php endif; ?><?php $testimonials = $block->getCustomCollection(); ?>
+
+<?php if ($testimonials && count($testimonials)): ?>
     <div class="table-wrapper orders-history">
         <table class="data table table-order-items history" id="my-orders-table">
             <caption class="table-caption"><?= $block->escapeHtml(__('Testimonials')) ?></caption>
@@ -25,7 +28,7 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($testimonials as $testimonial) : ?>
+            <?php foreach ($testimonials as $testimonial): ?>
                 <tr>
                     <td data-th="<?= $block->escapeHtml(__('Name')) ?>" class="col name">
                         <?= $block->escapeHtml($testimonial->getName()); ?>
@@ -44,9 +47,9 @@
             </tbody>
         </table>
     </div>
-    <?php if ($block->getPagerHtml()) : ?>
+    <?php if ($block->getPagerHtml()): ?>
         <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
-    <?php endif; ?><?php
-else : ?>
+    <?php endif; ?>
+<?php else: ?>
     <div class="message info empty"><span><?= $block->escapeHtml(__('No any record.')); ?></span></div>
 <?php endif; ?>

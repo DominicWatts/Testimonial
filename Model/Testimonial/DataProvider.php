@@ -6,7 +6,7 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 use Xigen\Testimonial\Model\ResourceModel\Testimonial\CollectionFactory;
 
 /**
- * Testimonial DataProvider class
+ * Testimonials testimonial model UI dataProvider class
  */
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {

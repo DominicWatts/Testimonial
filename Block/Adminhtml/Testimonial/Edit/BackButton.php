@@ -6,7 +6,7 @@ namespace Xigen\Testimonial\Block\Adminhtml\Testimonial\Edit;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 /**
- * BackButton class
+ * Testimonials adminhtml testimonial edit block back button class
  */
 class BackButton extends GenericButton implements ButtonProviderInterface
 {

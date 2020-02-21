@@ -3,10 +3,10 @@
 
 namespace Xigen\Testimonial\Helper;
 
-use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Contact\Model\ConfigInterface;
 use Magento\Customer\Api\Data\CustomerInterface;
 use Magento\Customer\Helper\View as CustomerViewHelper;
+use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\App\Request\DataPersistorInterface;
 

@@ -4,7 +4,7 @@
 namespace Xigen\Testimonial\Model\ResourceModel;
 
 /**
- * Testimonial resouce model class
+ * Testimonials testimonial model resouce model class
  */
 class Testimonial extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {

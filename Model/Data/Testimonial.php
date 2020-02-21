@@ -6,7 +6,7 @@ namespace Xigen\Testimonial\Model\Data;
 use Xigen\Testimonial\Api\Data\TestimonialInterface;
 
 /**
- * Testimonial interface
+ * Testimonials testimonial model data interface
  */
 class Testimonial extends \Magento\Framework\Api\AbstractExtensibleObject implements TestimonialInterface
 {

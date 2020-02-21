@@ -6,7 +6,7 @@ namespace Xigen\Testimonial\Block\Adminhtml\Testimonial\Edit;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 /**
- * SaveButton class
+ * Testimonials adminhtml testimonial save block generic button class
  */
 class SaveButton extends GenericButton implements ButtonProviderInterface
 {

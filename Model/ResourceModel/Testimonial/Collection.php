@@ -4,7 +4,7 @@
 namespace Xigen\Testimonial\Model\ResourceModel\Testimonial;
 
 /**
- * Testimonial Collection class
+ * Testimonials testimonial model collection class
  */
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {

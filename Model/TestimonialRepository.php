@@ -2,23 +2,23 @@
 
 namespace Xigen\Testimonial\Model;
 
-use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
-use Xigen\Testimonial\Api\Data\TestimonialSearchResultsInterfaceFactory;
-use Xigen\Testimonial\Api\TestimonialRepositoryInterface;
-use Xigen\Testimonial\Api\Data\TestimonialInterfaceFactory;
 use Magento\Framework\Api\DataObjectHelper;
-use Xigen\Testimonial\Model\ResourceModel\Testimonial as ResourceTestimonial;
-use Xigen\Testimonial\Model\ResourceModel\Testimonial\CollectionFactory as TestimonialCollectionFactory;
-use Magento\Framework\Exception\CouldNotDeleteException;
-use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\Api\ExtensibleDataObjectConverter;
+use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Reflection\DataObjectProcessor;
+use Magento\Store\Model\StoreManagerInterface;
+use Xigen\Testimonial\Api\Data\TestimonialInterfaceFactory;
+use Xigen\Testimonial\Api\Data\TestimonialSearchResultsInterfaceFactory;
+use Xigen\Testimonial\Api\TestimonialRepositoryInterface;
+use Xigen\Testimonial\Model\ResourceModel\Testimonial as ResourceTestimonial;
+use Xigen\Testimonial\Model\ResourceModel\Testimonial\CollectionFactory as TestimonialCollectionFactory;
 
 /**
- * Testimonial Repository class
+ * Testimonials testimonial model repository class
  */
 class TestimonialRepository implements TestimonialRepositoryInterface
 {
