@@ -5,7 +5,7 @@ namespace Xigen\Testimonial\Block\Adminhtml\Testimonial\Edit;
 use Magento\Backend\Block\Widget\Context;
 
 /**
- * GenericButton class
+ * Testimonials adminhtml testimonial edit block generic button class
  */
 abstract class GenericButton
 {

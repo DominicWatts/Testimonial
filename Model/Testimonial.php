@@ -2,12 +2,12 @@
 
 namespace Xigen\Testimonial\Model;
 
-use Xigen\Testimonial\Api\Data\TestimonialInterfaceFactory;
 use Magento\Framework\Api\DataObjectHelper;
 use Xigen\Testimonial\Api\Data\TestimonialInterface;
+use Xigen\Testimonial\Api\Data\TestimonialInterfaceFactory;
 
 /**
- * Testimonial model class
+ * Testimonials testimonial model class
  */
 class Testimonial extends \Magento\Framework\Model\AbstractModel
 {

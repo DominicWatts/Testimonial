@@ -68,7 +68,10 @@ class Save extends \Magento\Backend\App\Action
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
-                $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the Testimonial.'));
+                $this->messageManager->addExceptionMessage(
+                    $e,
+                    __('Something went wrong while saving the Testimonial.')
+                );
             }
 
             $this->dataPersistor->set('xigen_testimonial_testimonial', $data);

@@ -3,7 +3,7 @@
 namespace Xigen\Testimonial\Controller\Adminhtml\Testimonial;
 
 /**
- * Edit controller class
+ * Testimonials edit controller class
  */
 class Edit extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
 {
@@ -65,7 +65,9 @@ class Edit extends \Xigen\Testimonial\Controller\Adminhtml\Testimonial
             $id ? __('Edit Testimonial') : __('New Testimonial')
         );
         $resultPage->getConfig()->getTitle()->prepend(__('Testimonials'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? __('Edit Testimonial %1', $model->getId()) : __('New Testimonial'));
+        $resultPage->getConfig()->getTitle()->prepend(
+            $model->getId() ? __('Edit Testimonial %1', $model->getId()) : __('New Testimonial')
+        );
         return $resultPage;
     }
 }
